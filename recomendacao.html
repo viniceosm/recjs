@@ -1,0 +1,65 @@
+<script src="recjs.js"></script>
+<script>
+	(function() {
+	var usuarios = [
+		{
+			id: 1,
+			nome: 'viniciusM',
+			local: 'A',
+			amigos: [2, 4]
+		},
+		{
+			id: 2,
+			nome: 'behling',
+			local: 'A'
+		},
+		{
+
+			id: 3,
+			nome: 'joão',
+			local: 'A'
+		},
+		{
+
+			id: 4,
+			nome: 'igu',
+			local: 'B'
+		}
+	];
+
+	var itens = [
+		{
+			id: 1,
+			nome: 'Boku no hero'
+		}
+	];
+
+	var interacao = [
+		{
+			usuario: { value: 2, reference: 'usuarios' },
+			item: { value: 1, reference: 'itens' }
+		},
+		{
+			usuario: { value: 4, reference: 'usuarios' },
+			item: { value: 1, reference: 'itens' }
+		},
+		{
+			usuario: { value: 3, reference: 'usuarios' },
+			item: { value: 1, reference: 'itens' }
+		}
+	];
+
+	var recjs = new Recjs(usuarios, itens, interacao);
+	var viniciusM = recjs.getAllUsuarios()[0];
+	var recomendados = recjs.recomendarPara(viniciusM);
+
+	mostraRecomendacao(recomendados, viniciusM);
+
+	function mostraRecomendacao(recomendados, usuarioRecomendar) {
+		recomendados.forEach(recomendado => {
+			console.log('Recomendado para ' + usuarioRecomendar.nome + ': ' + recomendado.item.nome + '\n' +
+				'\t\t' + recomendado.usuario.nome + ' interage.');
+		});
+	}
+	})()
+</script>
